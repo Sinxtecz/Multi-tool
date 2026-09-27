@@ -15,7 +15,7 @@ print(r"""
        ╠══════════════════════════════════════════════════════╣
        ║                                                      ║
        ║   [ Framework ]   Network Reconnaissance             ║
-       ║   [ Version   ]   1.0                                ║
+       ║   [ Version   ]   1.1.0                                ║
        ║   [ Engine    ]   Python + System Tools              ║
        ║   [ Interface ]   Interactive CLI                    ║
        ║                                                      ║
