@@ -51,8 +51,7 @@ print(r"""
         └── Use only on systems you own or are authorized to test.
 
         ══════════════════════════════════════════════════════
-
-                     S N X T C Z   >>
+
 
 """)
 
