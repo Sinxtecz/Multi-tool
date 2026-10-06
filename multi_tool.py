@@ -1,177 +1,232 @@
-import platform
 import subprocess
-
-print(r"""
- ███████╗██╗███╗   ██╗██╗  ██╗████████╗███████╗ ██████╗███████╗
- ██╔════╝██║████╗  ██║╚██╗██╔╝╚══██╔══╝██╔════╝██╔════╝╚══███╔╝
- ███████╗██║██╔██╗ ██║ ╚███╔╝    ██║   █████╗  ██║        ███╔╝
- ╚════██║██║██║╚██╗██║ ██╔██╗    ██║   ██╔══╝  ██║       ███╔╝
- ███████║██║██║ ╚████║██╔╝ ██╗   ██║   ███████╗╚██████╗ ███████╗
- ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚══════╝
-
-       ╔══════════════════════════════════════════════════════╗
-       ║              S I N X T E C Z   C Y B E R             ║
-       ║                  P Y T H O N   T O O L               ║
-       ╠══════════════════════════════════════════════════════╣
-       ║                                                      ║
-       ║   [ Framework ]   Network Reconnaissance             ║
-       ║   [ Version   ]   1.1.0                                ║
-       ║   [ Engine    ]   Python + System Tools              ║
-       ║   [ Interface ]   Interactive CLI                    ║
-       ║                                                      ║
-       ╚══════════════════════════════════════════════════════╝
-
-        ┌─[ SYSTEM ]
-        │
-        ├── Platform      : Python Security Toolkit
-        ├── Purpose       : Network Reconnaissance
-        ├── Interface     : Interactive Terminal
-        └── Status        : ONLINE
-       
-        ┌─[ MODULES ]
-        │
-        ├── [01] ICMP / Ping
-        ├── [02] DNS Lookup
-        ├── [03] Nmap Aggressive Scan
-        ├── [04] Nmap SYN Scan
-        ├── [05] YOUR IP ADDRESS
-        │     ├──(5.1) PRIVATE IP ADDRESS.
-        │     └──(5.2) PUBLIC IP ADDRESS.
-        └── [06] TRACE ROUTE
-        
-        
-        ┌─[ COMMANDS ]
-        │
-        ├── help          → Display available commands
-        ├── 1-6           → Select a module
-        └── 0             → Exit framework
-
-        ┌─[ NOTICE ]
-        │
-        └── Use only on systems you own or are authorized to test.
-
-        ══════════════════════════════════════════════════════
-
-
-""")
+import platform
 
 
-while True:
+class Scan:
 
-    command = input("Snxtcz >> ").strip().lower()
-
-    # show menu
-    if command == "help":
-        print("""
-[+] MENU
-
-[1] Ping
- ╰─> Check if a target is online.
-
-[2] DNS Lookup
- ╰─> Find a domain's IP and DNS information.
-
-[3] Nmap Scan (Aggressive)
- ╰─> Detailed scan for ports, services, and versions.
-     Use for deeper network reconnaissance.
-
-[4] Nmap Scan (Stealthy)
- ╰─> Quieter scan to find open ports.
-     Use for basic port reconnaissance.
-     
- [5] IP Information
- ╰─> Display your private and public IP addresses.
-     Use this to identify your local and internet-facing addresses.
-     
- [6] Traceroute
-╰─> Show the network path packets take to reach a target.
-    Use this to understand where traffic travels and find network delays.
-
-[0] Exit
- ╰─> Close the toolkit.
-""")
-
-    # ping
-    elif command == "1":
-
-        target = input("[+] Enter IP/Domain: ")
-
-        print("\n[+] Pinging", target, "...\n")
-
-        if platform.system() == "Windows":
-            subprocess.run(["ping", "-n", "4", target])
-        else:
-            subprocess.run(["ping", "-c", "4", target])
-
-    # dns lookup
-    elif command == "2":
-
-        target = input("[+] Enter Domain/IP: ")
-
-        print("\n[+] Looking up", target, "...\n")
-
-        subprocess.run(["nslookup", target])
-
-    # nmap
-    elif command == "3":
-
-        target = input("[+] Enter Target IP/Domain: ")
-
-        print("\n[+] Starting Nmap scan...")
-        print("[+] Target:", target)
-        print("[!] This might take a little while.\n")
+    def aggressive(self, ip):
+        print("\n[+] Starting aggressive scan...")
+        print("[+] Target:", ip)
+        print()
 
         subprocess.run([
             "nmap",
-            "-F",
-            "-T4",
-            "-sV",
             "-A",
-            "-O",
-            target
+            "-T4",
+            ip
         ])
-    elif command == "4":
-        target = input("[+] Enter Target IP/Domain: ")
-        print("\n[+] Starting Nmap scan...")
-        print("[+] This may take time because of the stealth, that we don't sacrifice.")
-        print(".")
-        subprocess.run(["nmap",
-                        "-sS",
-                        "-T3",
-                        "--scan-delay",
-                        "500ms",
-                        target])
-    elif command == "5":
-        print("Please choose between 5.1 and 5.2.")
 
-    elif command == "5.1":
-        if platform.system() == "Windows":
-            subprocess.run(["ipconfig"])
-        else:
-            subprocess.run(["ip addr"])
+        print("\n[+] Aggressive scan completed")
 
-    elif command == "5.2":
-        if platform.system() == "Windows":
-            subprocess.run(["curl","https://api.ipify.org"])
-        else:
-            subprocess.run(["curl", "https://api.ipify.org"])
+    def syn_scan(self, ip):
+        print("\n[+] Starting SYN scan...")
+        print("[+] Target:", ip)
+        print()
 
-    elif command == "6":
-        target = input("\n[+] Enter Target IP/Domain: ")
+        subprocess.run([
+            "nmap",
+            "-sS",
+            "-T3",
+            "--scan-delay",
+            "500ms",
+            ip
+        ])
+
+        print("\n[+] SYN scan completed")
+
+    def ping(self, ip):
+        print("\n[+] Pinging:", ip)
+        print()
 
         if platform.system() == "Windows":
-            subprocess.run(["tracert",
-                            target])
+            subprocess.run([
+                "ping",
+                "-n",
+                "4",
+                ip
+            ])
         else:
-            subprocess.run(["traceroute",
-                            target])
+            subprocess.run([
+                "ping",
+                "-c",
+                "4",
+                ip
+            ])
 
-    # exit
-    elif command == "0":
+        print("\n[+] Ping completed")
 
-        print("\n[+] Closing Sinxtecz...")
+    def dns(self, webpage):
+        print("\n[+] Looking up:", webpage)
+        print()
+
+        subprocess.run([
+            "nslookup",
+            webpage
+        ])
+
+        print("\n[+] DNS lookup completed")
+
+    def trace(self, ip):
+        print("\n[+] Tracing route to:", ip)
+        print()
+
+        if platform.system() == "Windows":
+            subprocess.run([
+                "tracert",
+                ip
+            ])
+        else:
+            subprocess.run([
+                "traceroute",
+                ip
+            ])
+
+        print("\n[+] Trace completed")
+
+
+class IP:
+
+    def private(self):
+        print("\n[+] Getting private IP information...")
+        print()
+
+        if platform.system() == "Windows":
+            subprocess.run([
+                "ipconfig"
+            ])
+        else:
+            subprocess.run([
+                "ip",
+                "addr"
+            ])
+
+        print("\n[+] Private IP information displayed")
+
+    def public(self):
+        print("\n[+] Getting public IP...")
+        print()
+
+        subprocess.run([
+            "curl",
+            "https://api.ipify.org"
+        ])
+
+        print("\n[+] Public IP displayed")
+
+
+# Objects
+scan = Scan()
+ip = IP()
+
+
+# Internal developer marker
+# The value is intentionally not displayed anywhere.
+_signature = "\x53\x49\x4e\x58\x54\x45\x43\x5a"
+
+
+# Main program
+print("""
+                                        ..oMMUP^
+                                     .odMMMMMM'
+                     _.u[[[/;;,.   .o@P^   MMM^
+                 .o8888uu[[[/;:--.         dP^
+               oN88888uu[[[/;:--.      .o@P^
+             dNMMNN888uu[[[/;:--.   .o@P^
+            MMMMMMMN888uu[[[/;:--.  o@P^
+            NNMMMMNN888uu[[[/~.o@P^
+            888888888uu[[[/o@P^--..
+          oI8888uu[[[/o@P^:--..
+      .@^  YUU[[[/o@P^;;:---..
+    OMP     ^/o@P^;;;:---..
+  .dMMM   .o@P^ ^;;:---...
+ dMMMMMMM@^        ^^^^
+YMMMUP^
+ ^^
+""")
+
+while True:
+
+    print("""
+╭─「 𝙎𝙄𝙉𝙓𝙏𝙀𝘾𝙕 𝙏𝙊𝙊𝙇𝙆𝙄𝙏 」
+│
+├── Scan
+│   ├── [1] aggressive()
+│   ├── [2] syn_scan()
+│   ├── [3] ping()
+│   ├── [4] dns()
+│   └── [5] trace()
+│
+├── IP
+│   ├── [6] private()
+│   └── [7] public()
+│
+└── Menu
+    └── [0] Exit
+""")
+
+    choice = input("Snxtcz >> ").strip()
+
+    if choice == "1":
+
+        target = input("[+] Enter target IP/domain: ").strip()
+
+        if target:
+            scan.aggressive(target)
+        else:
+            print("[-] Target cannot be empty")
+
+    elif choice == "2":
+
+        target = input("[+] Enter target IP/domain: ").strip()
+
+        if target:
+            scan.syn_scan(target)
+        else:
+            print("[-] Target cannot be empty")
+
+    elif choice == "3":
+
+        target = input("[+] Enter target IP/domain: ").strip()
+
+        if target:
+            scan.ping(target)
+        else:
+            print("[-] Target cannot be empty")
+
+    elif choice == "4":
+
+        domain = input("[+] Enter domain: ").strip()
+
+        if domain:
+            scan.dns(domain)
+        else:
+            print("[-] Domain cannot be empty")
+
+    elif choice == "5":
+
+        target = input("[+] Enter target IP/domain: ").strip()
+
+        if target:
+            scan.trace(target)
+        else:
+            print("[-] Target cannot be empty")
+
+    elif choice == "6":
+
+        ip.private()
+
+    elif choice == "7":
+
+        ip.public()
+
+    elif choice == "0":
+
+        print("\n[+] Exiting SINXTECZ TOOLKIT...")
         break
 
     else:
 
-        print("[-] Unknown command. Type 'help'.")
+        print("\n[-] Invalid option")
+
+    input("\nPress ENTER to return to menu...")
+
