@@ -1,6 +1,11 @@
 # 𝙎𝙄𝙉𝙓𝙏𝙀𝘾𝙕 TOOLKIT
 
-A lightweight Python-based networking toolkit built for **learning, practice, and understanding how common networking utilities work behind the GUI**.
+```text
+╭─「 𝙎𝙄𝙉𝙓𝙏𝙀𝘾𝙕 」
+╰─┤ CYBER TOOLKIT
+```
+
+A lightweight Python networking toolkit built for **learning, practice, and understanding networking tools from the command line.**
 
 ## ⚡ Features
 
@@ -11,22 +16,109 @@ A lightweight Python-based networking toolkit built for **learning, practice, an
 * 🛣️ Traceroute
 * 🖥️ Private IP Information
 * 🌍 Public IP Detection
-* 🪟 Windows & 🐧 Linux Support
+* 🪟 Windows + 🐧 Linux support
+
+---
 
 ## 🛠️ Requirements
 
 * Python 3
 * Nmap
-* `curl`
-* Standard system networking utilities
+* cURL
+* DNS utilities
+* Traceroute utilities
 
-## 🚀 Run
+Python's `subprocess` and `platform` modules are built-in, so **no `pip install` is required.**
+
+---
+
+## 🪟 Windows Setup
+
+### 1. Install Python
+
+Download Python 3 from:
+
+https://www.python.org/downloads/
+
+During installation, make sure:
+
+```text
+☑ Add Python to PATH
+```
+
+Check:
+
+```powershell
+python --version
+```
+
+### 2. Install Nmap
+
+Download Nmap from:
+
+https://nmap.org/download.html
+
+Check:
+
+```powershell
+nmap --version
+```
+
+### 3. cURL
+
+Modern Windows versions normally include cURL.
+
+Check:
+
+```powershell
+curl --version
+```
+
+### 4. Run the toolkit
+
+```powershell
+python multi_tool.py
+```
+
+---
+
+## 🐧 Linux Setup
+
+### Debian / Ubuntu / Kali
+
+```bash
+sudo apt update
+sudo apt install python3 nmap curl traceroute
+```
+
+Check:
+
+```bash
+python3 --version
+nmap --version
+curl --version
+traceroute --version
+```
+
+Run:
+
+```bash
+python3 multi_tool.py
+```
+
+### Arch Linux
+
+```bash
+sudo pacman -S python nmap curl traceroute
+```
+
+Run:
 
 ```bash
 python multi_tool.py
 ```
 
-Then choose an option from the menu.
+---
 
 ## 📂 Structure
 
@@ -49,8 +141,10 @@ SINXTECZ TOOLKIT
 
 ## 🎯 Purpose
 
-This project is mainly for **learning Python, networking, subprocesses, and security tooling** by building everything from the command line.
+Built to practice **Python, networking, subprocesses, Linux/Windows commands, and cybersecurity fundamentals**.
 
 > ⚠️ Only scan systems and networks you own or have explicit permission to test.
 
-**Made by 𝙎𝙄𝙉𝙓𝙏𝙀𝘾𝙕**
+```text
+// crafted by 𝙎𝙄𝙉𝙓𝙏𝙀𝘾𝙕
+```
