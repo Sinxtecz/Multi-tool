@@ -1,101 +1,56 @@
-# 🛡️ SINXTECZ CYBER PYTHON TOOL
+# 𝙎𝙄𝙉𝙓𝙏𝙀𝘾𝙕 TOOLKIT
 
-**Version 1.1.0** · Python-based network reconnaissance CLI
-
-A small cybersecurity toolkit built with Python to practice **networking, automation, CLI development, and security tools**.
+A lightweight Python-based networking toolkit built for **learning, practice, and understanding how common networking utilities work behind the GUI**.
 
 ## ⚡ Features
 
-```text
-[1] Ping
-    Check whether a target is reachable.
+* 🔎 Aggressive Nmap Scan
+* 🛡️ SYN Scan
+* 📡 Ping
+* 🌐 DNS Lookup
+* 🛣️ Traceroute
+* 🖥️ Private IP Information
+* 🌍 Public IP Detection
+* 🪟 Windows & 🐧 Linux Support
 
-[2] DNS Lookup
-    Get basic DNS information.
-
-[3] Nmap Aggressive Scan
-    Discover ports, services, versions, and system information.
-
-[4] Nmap SYN Scan
-    Perform a slower SYN-based port scan.
-
-[5] IP Information
-    ├── 5.1  Private IP
-    └── 5.2  Public IP
-
-[6] Traceroute
-    Display the network path to a target.
-
-[0] Exit
-```
-
-## 🧰 Requirements
+## 🛠️ Requirements
 
 * Python 3
 * Nmap
-* `ping`
-* `nslookup`
 * `curl`
-* `traceroute` / `tracert`
+* Standard system networking utilities
 
-Check Python:
-
-```bash
-python --version
-```
-
-## 📥 Installation
+## 🚀 Run
 
 ```bash
-git clone https://github.com/Sinxtecz/Multi-tool.git
-cd Multi-tool
 python multi_tool.py
 ```
 
-On Linux:
+Then choose an option from the menu.
 
-```bash
-python3 multi_tool.py
+## 📂 Structure
+
+```text
+SINXTECZ TOOLKIT
+│
+├── Scan
+│   ├── aggressive()
+│   ├── syn_scan()
+│   ├── ping()
+│   ├── dns()
+│   └── trace()
+│
+├── IP
+│   ├── private()
+│   └── public()
+│
+└── Menu
 ```
-
-## 🐍 Built With
-
-* **Python**
-* `subprocess`
-* `platform`
-* **Nmap**
-* Standard system networking utilities
 
 ## 🎯 Purpose
 
-This project is mainly for learning how to:
+This project is mainly for **learning Python, networking, subprocesses, and security tooling** by building everything from the command line.
 
-* Automate security tools with Python
-* Work with networking commands
-* Build interactive CLI programs
-* Handle different operating systems
-* Develop practical Python skills
+> ⚠️ Only scan systems and networks you own or have explicit permission to test.
 
-## 🚀 Planned Improvements
-
-* [ ] Better input validation
-* [ ] Error handling
-* [ ] Scan result saving
-* [ ] JSON/text reports
-* [ ] Nmap result parsing
-* [ ] Modular project structure
-* [ ] Logging
-* [ ] Automated testing
-
-## ⚠️ Legal Use
-
-Use this toolkit only on **systems you own or have explicit permission to test**, including personal labs and CTF environments.
-
-## 👤 Author
-
-**Sinxtecz**
-
-🐍 Python · 🔐 Cybersecurity · 🐧 Linux · 🌐 Networking
-
-**Status:** Active Development
-
+**Made by 𝙎𝙄𝙉𝙓𝙏𝙀𝘾𝙕**
